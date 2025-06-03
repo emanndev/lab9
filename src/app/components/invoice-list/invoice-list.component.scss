@@ -1,0 +1,27 @@
+.invoice-list {
+  color: white;
+  background-color: #1e2139;
+  padding: 20px;
+  h1 {
+    font-size: 24px;
+  }
+  p {
+    color: #888eb0;
+  }
+  button {
+    background-color: #7c5dfa;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .invoice-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #252945;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+}

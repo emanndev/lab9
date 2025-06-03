@@ -1,0 +1,54 @@
+@use '../variables' as *;
+
+
+.app-container{
+    font-family: $font-family-base;
+    margin: 0 auto;
+    width: 40%;
+}
+
+.app-header {
+   display: flex;
+   flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    background-color:$color-draft;
+    margin-top: 20px;
+    height: 72px;
+   
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(to right, $color-purple-light, $color-purple);
+    padding: 20px;
+    margin: -10px;
+    width: 72px;
+    height: 72px;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.icons-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+hr{
+    height: 4.5rem;
+    background-color: white;
+    margin: 0;
+    opacity: 0.5;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: $color-purple-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}

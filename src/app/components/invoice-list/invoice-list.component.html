@@ -1,0 +1,18 @@
+  <div class="list-header">
+  <h1>Invoices</h1>
+    <p>There are 7 total invoices</p>
+  </div>
+
+  <div></div>
+    <button class="new-invoice-button">New Invoice</button>
+
+    @for (invoice of invoices; track $index) {
+   <div class="invoice-item">
+      <span class="invoice-id">#{{ invoice.id }}</span>
+      <span class="invoice-due-date">Due {{ invoice.dueDate }}</span>
+      <span class="invoice-client">{{ invoice.client }}</span>
+      <span class="invoice-amount">£{{ invoice.amount }}</span>
+      <span class="invoice-status">{{ invoice.status }}</span>
+    </div>
+    }
+ 
