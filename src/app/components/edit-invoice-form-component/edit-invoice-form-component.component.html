@@ -1,0 +1,57 @@
+<div class="edit-invoice">
+  <h2>Edit Invoice #{{ invoiceForm.get('id')?.value }}</h2>
+  <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+    <div class="section">
+      <h3>Bill From</h3>
+      <input formControlName="description" placeholder="Description" />
+      <div formGroupName="senderAddress">
+        <input formControlName="street" placeholder="Street Address" />
+        <input formControlName="city" placeholder="City" />
+        <input formControlName="postCode" placeholder="Post Code" />
+        <input formControlName="country" placeholder="Country" />
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Bill To</h3>
+      <input formControlName="clientName" placeholder="Client Name" />
+      <input formControlName="clientEmail" placeholder="Client Email" />
+      <div formGroupName="clientAddress">
+        <input formControlName="street" placeholder="Street Address" />
+        <input formControlName="city" placeholder="City" />
+        <input formControlName="postCode" placeholder="Post Code" />
+        <input formControlName="country" placeholder="Country" />
+      </div>
+    </div>
+
+    <div class="section">
+      <label>Invoice Date</label>
+      <input formControlName="createdAt" type="date" />
+
+      <label>Payment Terms</label>
+      <select formControlName="paymentTerms">
+        <option value="1">Net 1 Day</option>
+        <option value="7">Net 7 Days</option>
+        <option value="14">Net 14 Days</option>
+        <option value="30">Net 30 Days</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <h3>Item List</h3>
+      <div class="item" *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+        <input formControlName="name" placeholder="Item Name" />
+        <input formControlName="quantity" type="number" placeholder="Qty" />
+        <input formControlName="price" type="number" placeholder="Price" />
+        <input formControlName="total" type="number" placeholder="Total" [disabled]="false" />
+        <button type="button" (click)="removeItem(i)">Remove</button>
+      </div>
+      <button type="button" (click)="addItem()">+ Add New Item</button>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" (click)="cancel()">Cancel</button>
+      <button type="submit">Save Changes</button>
+    </div>
+  </form>
+</div>

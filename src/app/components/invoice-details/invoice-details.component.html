@@ -77,7 +77,7 @@
     </div>
 
     <div class="action-bar">
-      <button class="edit-btn">Edit</button>
+      <button class="edit-btn" [routerLink] = "['/invoices', invoice.id, 'edit']" >Edit</button>
       <button class="delete-btn" (click)="toggleDeleteConfirm()">Delete</button>
       <button class="paid-btn" (click)="markAsPaid()" [disabled]="invoice.status === 'paid'">
         Mark as Paid
