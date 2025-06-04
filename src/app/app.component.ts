@@ -7,7 +7,7 @@ import { InvoiceListComponent } from './components/invoice-list/invoice-list.com
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [InvoiceListComponent]
+  imports: [InvoiceListComponent, RouterOutlet]
 })
 export class AppComponent {
   title = 'invoice-app';
