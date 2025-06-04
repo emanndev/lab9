@@ -1,18 +1,47 @@
+<div class="header-container">
   <div class="list-header">
-  <h1>Invoices</h1>
-    <p>There are 7 total invoices</p>
+    <h1>Invoices</h1>
+    <p>{{ invoices.length }} invoices</p>
   </div>
 
-  <div></div>
-    <button class="new-invoice-button">New Invoice</button>
-
-    @for (invoice of invoices; track $index) {
-   <div class="invoice-item">
-      <span class="invoice-id">#{{ invoice.id }}</span>
-      <span class="invoice-due-date">Due {{ invoice.dueDate }}</span>
-      <span class="invoice-client">{{ invoice.client }}</span>
-      <span class="invoice-amount">£{{ invoice.amount }}</span>
-      <span class="invoice-status">{{ invoice.status }}</span>
+  <div class="action-group">
+    <div class="filter-dropdown">
+      <span class="label">Filter</span>
+      <div class="dropdown">
+        <select>
+          <option value="">All</option>
+          <option value="paid">Paid</option>
+          <option value="pending">Pending</option>
+          <option value="draft">Draft</option>
+        </select>
+        <img src="assets/images/icon-arrow-down.svg" alt="arrow" class="dropdown-arrow" />
+      </div>
     </div>
-    }
- 
+
+    <button class="new-invoice-button">
+      <span class="circle">
+        <img src="assets/images/icon-plus.svg" alt="plus icon" />
+      </span>
+      New
+    </button>
+  </div>
+</div>
+
+
+<div class="invoice-card" *ngFor="let invoice of invoices">
+  <div class="top">
+    <div class="id">#{{ invoice.id }}</div>
+    <div class="client">{{ invoice.clientName }}</div>
+  </div>
+
+  <div class="middle">
+    <div class="due">Due {{ invoice.paymentDue | date: 'dd MMM yyyy' }}</div>
+    <div class="amount">£ {{ invoice.total | number: '1.2-2' }}</div>
+  </div>
+
+  <div class="bottom">
+    <div class="status" [ngClass]="invoice.status">
+      <span class="dot"></span> {{ invoice.status | titlecase }}
+    </div>
+  </div>
+</div>

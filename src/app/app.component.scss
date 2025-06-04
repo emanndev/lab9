@@ -1,54 +1,74 @@
 @use '../variables' as *;
 
 
-.app-container{
-    font-family: $font-family-base;
-    margin: 0 auto;
-    width: 40%;
-}
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
-.app-header {
-   display: flex;
-   flex-direction: row;
+  .navbar {
+    background-color: #373b53;
+    padding: 1rem;
+    display: flex;
     justify-content: space-between;
-    padding: 10px;
-    background-color:$color-draft;
-    margin-top: 20px;
-    height: 72px;
-   
-}
+    align-items: center;
 
-.logo-wrapper {
+    .logo-wrapper {
     display: flex;
     align-items: center;
-    background-image: linear-gradient(to right, $color-purple-light, $color-purple);
+    background: url('/assets/images/rectangle.png') no-repeat center/cover;
     padding: 20px;
-    margin: -10px;
+    margin: -16px;
     width: 72px;
+    margin-left: -15px;
     height: 72px;
     border-radius: 0px 20px 20px 0px;
 }
 
-.icons-wrapper{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
+    .logo {
+      width: 40px;
+      height: 40px;
+      background: url('/assets/images/logo.svg') no-repeat center/contain;
+    }
 
-hr{
-    height: 4.5rem;
-    background-color: white;
-    margin: 0;
-    opacity: 0.5;
-}
 
-.avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: $color-purple-light;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
+    .nav-items {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .icon {
+        width: 20px;
+      }
+
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+    }
+  }
+
+  .main-content {
+    padding: 1rem;
+    flex-grow: 1;
+  }
+
+  // Desktop (sidebar layout)
+  @media (min-width: 1024px) {
+    flex-direction: row;
+
+    .navbar {
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100px;
+      height: 100vh;
+    }
+
+    .main-content {
+      padding: 2rem;
+      flex-grow: 1;
+    }
+  }
 }

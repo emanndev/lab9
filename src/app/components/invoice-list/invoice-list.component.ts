@@ -1,15 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Invoice } from '../../model/invoice.model';
+import { InvoiceService } from '../../services/invoice.service';
+import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor
 
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
   templateUrl: './invoice-list.component.html',
-  styleUrls: ['./invoice-list.component.scss']
+  styleUrls: ['./invoice-list.component.scss'],
+  imports: [CommonModule] 
 })
-export class InvoiceListComponent {
-  invoices = [
-    { id: 'RT3080', dueDate: '19 Aug 2021', client: 'Jensen Huang', amount: 1800.90, status: 'Paid' },
-    { id: 'XM9141', dueDate: '20 Sep 2021', client: 'Alex Grim', amount: 556.00, status: 'Pending' },
-    { id: 'RG0314', dueDate: '30 Oct 2021', client: 'John Morrison', amount: 14002.33, status: 'Paid' }
-  ];
+export class InvoiceListComponent implements OnInit {
+  // invoices: Invoice[] = [];
+
+  // ngOnInit() {
+  //   this.invoices = data as Invoice[];
+  // }
+   invoices: Invoice[] = [];
+
+  constructor(private invoiceService: InvoiceService) {}
+
+  ngOnInit() {
+    this.invoices = this.invoiceService.getInvoices();
+  }
 }
