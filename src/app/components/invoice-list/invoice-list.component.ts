@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from '../../model/invoice.model';
 import { InvoiceService } from '../../services/invoice.service';
-import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-invoice-list',
@@ -11,11 +11,6 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor
   imports: [CommonModule] 
 })
 export class InvoiceListComponent implements OnInit {
-  // invoices: Invoice[] = [];
-
-  // ngOnInit() {
-  //   this.invoices = data as Invoice[];
-  // }
    invoices: Invoice[] = [];
 
   constructor(private invoiceService: InvoiceService) {}
