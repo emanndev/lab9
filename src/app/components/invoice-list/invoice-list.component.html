@@ -28,7 +28,7 @@
 </div>
 
 
-<div class="invoice-card" *ngFor="let invoice of invoices">
+<div class="invoice-card" *ngFor="let invoice of invoices" [routerLink]="['/invoices', invoice.id]" >
   <div class="top">
     <div class="id">#{{ invoice.id }}</div>
     <div class="client">{{ invoice.clientName }}</div>

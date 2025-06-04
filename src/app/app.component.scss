@@ -7,7 +7,7 @@
   min-height: 100vh;
 
   .navbar {
-    background-color: #373b53;
+    background-color: $color-draft;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -35,8 +35,15 @@
     .nav-items {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 2rem;
 
+       hr{
+        position: absolute;
+        right: 70px;
+        opacity: 0.5;
+        height: 70px;
+       
+      }
       .icon {
         width: 20px;
       }
@@ -45,7 +52,7 @@
         width: 36px;
         height: 36px;
         border-radius: 50%;
-        border: 2px solid white;
+        border: 1px solid white;
       }
     }
   }

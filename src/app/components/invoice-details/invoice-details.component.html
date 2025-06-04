@@ -1,1 +1,99 @@
-<p>invoice-details works!</p>
+<div class="invoice-details">
+  <button class="back-button" (click)="goBack()">
+    <img src="assets/images/icon-arrow-left.svg" alt="Back" /> Go back
+  </button>
+
+  <div *ngIf="invoice" class="invoice-container">
+    <div class="status-card">
+        <span>Status</span>
+        <div class="status" [ngClass]="invoice.status">
+        <span class="dot"></span>
+        {{ invoice.status | titlecase }}
+        </div>
+    </div>
+    </div>
+
+  <div *ngIf="invoice" class="invoice-container">
+    
+    <div class="invoice-box">
+      <div class="top-section">
+        <h2><span>#</span>{{ invoice.id }}</h2>
+        <p>{{ invoice.description }}</p>
+
+        <div class="sender-address">
+          <p>{{ invoice.senderAddress.street }}</p>
+          <p>{{ invoice.senderAddress.city }}</p>
+          <p>{{ invoice.senderAddress.postCode }}</p>
+          <p>{{ invoice.senderAddress.country }}</p>
+        </div>
+      </div>
+
+      <div class="billing-section">
+        <div class="dates">
+          <div class="invoice-info">
+          <p>Invoice Date</p>
+          <h3>{{ invoice.createdAt | date: 'dd MMM yyyy' }}</h3>
+          </div>
+          <div class="payment-info">
+          <p>Payment Due</p>
+          <h3>{{ invoice.paymentDue | date: 'dd MMM yyyy' }}</h3>
+          </div>
+        </div>
+
+        <div class="client-info">
+          <p>Bill To</p>
+          <h3>{{ invoice.clientName }}</h3>
+          <div class="clientAdress-info">
+          <p>{{ invoice.clientAddress.street }}</p>
+          <p>{{ invoice.clientAddress.city }}</p>
+          <p>{{ invoice.clientAddress.postCode }}</p>
+          <p>{{ invoice.clientAddress.country }}</p>
+          </div>
+          
+        </div>
+
+       
+      </div>
+
+       <div class="email-info">
+          <p>Sent to</p>
+          <h3>{{ invoice.clientEmail }}</h3>
+        </div>
+
+      <div class="item-list">
+        <div class="item" *ngFor="let item of invoice.items">
+          <div>
+            <strong>{{ item.name }}</strong>
+            <p>{{ item.quantity }} x £{{ item.price }}</p>
+          </div>
+          <div class="item-total">£{{ item.total }}</div>
+        </div>
+
+        <div class="grand-total">
+          <p>Grand Total</p>
+          <h2>£{{ invoice.total }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="edit-btn">Edit</button>
+      <button class="delete-btn" (click)="toggleDeleteConfirm()">Delete</button>
+      <button class="paid-btn" (click)="markAsPaid()" [disabled]="invoice.status === 'paid'">
+        Mark as Paid
+      </button>
+    </div>
+
+   
+    <div class="modal" *ngIf="confirmDelete">
+      <div class="modal-content">
+        <h3>Confirm Deletion</h3>
+        <p>Are you sure you want to delete invoice #{{ invoice.id }}? This action cannot be undone.</p>
+        <div class="modal-actions">
+          <button (click)="toggleDeleteConfirm()">Cancel</button>
+          <button class="delete-btn" (click)="deleteInvoice()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
