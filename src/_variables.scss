@@ -8,10 +8,14 @@ $color-dark-bg: #141625;
 
 // Accent & Status
 $color-draft: #373B53;
+$color-draft-dark: #292C44;
 $color-paid: #33D69F;
+$color-paid-dark: #1F2B3F;
 $color-pending: #FF8F00;
+$color-pending-dark: #2B2736;
 $color-void: #888EB0;
 $color-light-blue: #7E88C3;
+
 
 // Text Colors
 $color-heading: #0C0E16;
@@ -28,7 +32,8 @@ $color-main-bg: #FFFFFF;
 // Font Family
 $font-family-base: 'Spartan', sans-serif;
 
-
+//dark mode colors
+$dark-navbar: #1e2139;
 $dark-bg: #141625;
 $dark-input-bg: #1E2139;
 $dark-text: #FFFFFF;

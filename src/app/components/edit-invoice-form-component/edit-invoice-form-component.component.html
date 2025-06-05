@@ -1,4 +1,10 @@
+ <button class="back-button" (click)="goBack()">
+    <img src="assets/images/icon-arrow-left.svg" alt="Back" /> Go back
+  </button>
+
 <div class="edit-invoice">
+
+
   <h2>Edit Invoice #{{ invoiceForm.get('id')?.value }}</h2>
   <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
     <div class="section">

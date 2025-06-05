@@ -99,6 +99,9 @@ this.invoiceForm = this.fb.group({
     this.router.navigate(['/invoices', this.invoiceId]);
   }
 
+goBack() {
+    this.router.navigate(['/invoices/:id']);
+  }
 
 
 }

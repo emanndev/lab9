@@ -1,3 +1,5 @@
+@use '../../../variables' as *;
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -13,7 +15,7 @@
 
     p {
       margin: 0;
-      color: #888eb0;
+      // color: #888eb0;
       font-size: 14px;
     }
   }
@@ -23,38 +25,53 @@
     align-items: center;
     gap: 1rem;
 
+
+
     .filter-dropdown {
       display: flex;
       align-items: center;
       gap: 0.5rem;
 
-      .label {
-        font-weight: 600;
-        font-size: 14px;
-      }
-
+      
       .dropdown {
-        position: relative;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
 
-        select {
-          appearance: none;
-          padding: 0.4rem 1.5rem 0.4rem 0.5rem;
-          border: 1px solid #dfe3fa;
-          border-radius: 6px;
-          background-color: white;
-          cursor: pointer;
-        }
+      .dropdown-label {
+        margin-right: 8px;
+      }
 
-        .dropdown-arrow {
-          position: absolute;
-          right: 10px;
-          top: 50%;
-          transform: translateY(-50%);
-          pointer-events: none;
-          width: 10px;
+      .dropdown-arrow {
+        width: 12px;
+        transform: rotate(0deg);
+        transition: transform 0.2s ease;
+      }
+
+      &.open .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 120%;
+        left: 0;
+        background-color: var(--input-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        z-index: 100;
+
+        label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-size: 14px;
+          color: var(--text-color);
         }
       }
-    }
+      }
+ }
 
     .new-invoice-button {
       display: flex;
@@ -84,14 +101,18 @@
         }
       }
     }
+
+    
   }
 }
 .invoice-card {
-  background: white;
+  // background: white;
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12);
+
+
 
   .top {
     display: flex;
@@ -116,7 +137,7 @@
 
   .id {
     font-weight: bold;
-    color: #0c0e16;
+    // color: #0c0e16;
   }
 
   .client {
@@ -126,12 +147,12 @@
 
   .due {
     font-size: 14px;
-    color: #888eb0;
+    // color: #888eb0;
   }
 
   .amount {
     font-weight: bold;
-    color: #0c0e16;
+    // color: #0c0e16;
   }
 
   .status {
@@ -144,36 +165,42 @@
     border-radius: 6px;
     text-transform: capitalize;
     margin-left: auto;
+    height: 40px;
 
 
     &.paid {
-      background-color: #f3fcf9;
-      color: #33d69f;
+      // background-color: #f3fcf9;
+      // color: #33d69f;
       height: 40px;
       width: 104px;
       text-align: center;
 
       .dot {
-        background-color: #33d69f;
+        // background-color: #33d69f;
      
       }
     }
 
     &.pending {
-      background-color: #fff4e5;
-      color: #ff8f00;
+      // background-color: #fff4e5;
+      // color: #ff8f00;
 
       .dot {
-        background-color: #ff8f00;
+        // background-color: #ff8f00;
       }
     }
 
     &.draft {
-      background-color: #f4f4f5;
-      color: #373b53;
+      // background-color: #f4f4f5;
+      // color: #373b53;
+      text-align: center;
+      margin-right: 15px;
+      width: 100%;
+      
 
       .dot {
-        background-color: #373b53;
+        // background-color: #373b53;
+       
       }
     }
 
@@ -181,7 +208,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
+      margin-left: 15px;
     }
   }
 }
-

@@ -1,6 +1,18 @@
 .edit-invoice {
   padding: 1rem;
 
+   .back-button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #7c5dfa;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+
   h2 {
     margin-bottom: 1rem;
   }

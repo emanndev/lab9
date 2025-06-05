@@ -6,16 +6,17 @@
 
   <div class="action-group">
     <div class="filter-dropdown">
-      <span class="label">Filter</span>
-      <div class="dropdown">
-        <select>
-          <option value="">All</option>
-          <option value="paid">Paid</option>
-          <option value="pending">Pending</option>
-          <option value="draft">Draft</option>
-        </select>
-        <img src="assets/images/icon-arrow-down.svg" alt="arrow" class="dropdown-arrow" />
-      </div>
+       <div class="dropdown" (click)="toggleDropdown()" [class.open]="dropdownOpen">
+  <span class="dropdown-label">Filter</span>
+  <img src="assets/images/icon-arrow-down.svg" alt="arrow" class="dropdown-arrow" />
+
+  <div class="dropdown-menu" *ngIf="dropdownOpen">
+    <label><input type="checkbox" (change)="onStatusChange('draft', $event)" /> Draft</label>
+    <label><input type="checkbox" (change)="onStatusChange('pending', $event)" /> Pending</label>
+    <label><input type="checkbox" (change)="onStatusChange('paid', $event)" /> Paid</label>
+
+  </div>
+</div>
     </div>
 
     <button class="new-invoice-button">
@@ -30,7 +31,7 @@
 
 <div class="invoice-card" *ngFor="let invoice of invoices" [routerLink]="['/invoices', invoice.id]" >
   <div class="top">
-    <div class="id">#{{ invoice.id }}</div>
+    <div class="id"><span class="client">#</span>{{ invoice.id }}</div>
     <div class="client">{{ invoice.clientName }}</div>
   </div>
 
@@ -45,3 +46,5 @@
     </div>
   </div>
 </div>
+
+
