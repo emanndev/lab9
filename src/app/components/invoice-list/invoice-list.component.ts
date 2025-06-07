@@ -22,6 +22,8 @@ export class InvoiceListComponent implements OnInit {
   ngOnInit() {
     this.invoices = this.invoiceService.getInvoices();
   }
+
+
    onStatusChange(status: string, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
     if (checked) {

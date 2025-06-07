@@ -10,6 +10,7 @@
     h1 {
       margin: 0;
       font-size: 24px;
+      
       font-weight: bold;
     }
 
@@ -110,9 +111,17 @@
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  transition: border ease-in-out 0.15s;
 
+  &:hover{
+    border: 1px solid $color-purple-light;
+    cursor: pointer;
+  }
 
+  .right-arrow{
+    display: none;
+  }
 
   .top {
     display: flex;
@@ -140,6 +149,10 @@
     // color: #0c0e16;
   }
 
+  .client-Id {
+    color: #888eb0;
+    font-size: 14px;
+  }
   .client {
     color: #888eb0;
     font-size: 14px;
@@ -175,20 +188,20 @@
       width: 104px;
       text-align: center;
 
-      .dot {
-        // background-color: #33d69f;
+      // .dot {
+      //   // background-color: #33d69f;
      
-      }
+      // }
     }
 
-    &.pending {
-      // background-color: #fff4e5;
-      // color: #ff8f00;
+    // &.pending {
+    //   // background-color: #fff4e5;
+    //   // color: #ff8f00;
 
-      .dot {
-        // background-color: #ff8f00;
-      }
-    }
+    //   // .dot {
+    //   //   // background-color: #ff8f00;
+    //   // }
+    // }
 
     &.draft {
       // background-color: #f4f4f5;
@@ -198,10 +211,10 @@
       width: 100%;
       
 
-      .dot {
-        // background-color: #373b53;
+      // .dot {
+      //   // background-color: #373b53;
        
-      }
+      // }
     }
 
     .dot {
@@ -212,3 +225,69 @@
     }
   }
 }
+
+
+
+@media (min-width: 1024px){
+  .header-container{
+    margin-bottom: 2rem;
+    margin-top: -5px;
+  }
+
+ .list-header {
+  
+    h1 {
+     font-size: 32px;
+      font-weight: bold;
+    }
+
+    p {
+      
+      font-size: 14px;
+    }
+  }
+
+
+  .invoice-card{
+    position: relative;
+    height: 72px;
+    margin-bottom: 1rem;
+  
+  .top .id{
+    position: absolute;
+    top: 40%;
+    left: 5%;
+  }
+
+   .top .client{
+    position: absolute;
+    top: 40%;
+    left: 45%;
+  }
+
+  .middle .due{
+     position: absolute;
+    top: 40%;
+    left: 22%;
+  }
+
+  .middle .amount{
+     position: absolute;
+    top: 40%;
+    left: 65%;
+  }
+  .bottom .status{
+    margin-top: 10px;
+    margin-right: 40px;
+  }
+
+  .right-arrow{
+    display: block;
+    position: absolute;
+    top: 40%;
+    right: 2%;
+  }
+  }
+
+}
+

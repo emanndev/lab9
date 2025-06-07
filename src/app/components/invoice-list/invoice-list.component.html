@@ -7,7 +7,7 @@
   <div class="action-group">
     <div class="filter-dropdown">
        <div class="dropdown" (click)="toggleDropdown()" [class.open]="dropdownOpen">
-  <span class="dropdown-label">Filter</span>
+  <span class="dropdown-label" id="responsiveText">Filter</span>
   <img src="assets/images/icon-arrow-down.svg" alt="arrow" class="dropdown-arrow" />
 
   <div class="dropdown-menu" *ngIf="dropdownOpen">
@@ -31,7 +31,7 @@
 
 <div class="invoice-card" *ngFor="let invoice of invoices" [routerLink]="['/invoices', invoice.id]" >
   <div class="top">
-    <div class="id"><span class="client">#</span>{{ invoice.id }}</div>
+    <div class="id"><span class="client-Id">#</span>{{ invoice.id }}</div>
     <div class="client">{{ invoice.clientName }}</div>
   </div>
 
@@ -44,6 +44,10 @@
     <div class="status" [ngClass]="invoice.status">
       <span class="dot"></span> {{ invoice.status | titlecase }}
     </div>
+  </div>
+
+  <div class="right-arrow">
+    <img src="assets/images/icon-arrow-right.svg" alt="">
   </div>
 </div>
 

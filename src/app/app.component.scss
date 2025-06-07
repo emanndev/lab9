@@ -21,7 +21,7 @@
     margin: -16px;
     width: 72px;
     margin-left: -15px;
-    height: 72px;
+    height: 75px;
     border-radius: 0px 20px 20px 0px;
 }
 
@@ -38,12 +38,14 @@
       display: flex;
       align-items: center;
       gap: 2rem;
+      position: relative;
 
        hr{
         position: absolute;
-        right: 70px;
-        opacity: 0.5;
-        height: 70px;
+        right: 50px;
+        opacity: 0.2;
+        height: 76px;
+        
        
       }
       .icon {
@@ -67,17 +69,41 @@
 
   @media (min-width: 1024px) {
     flex-direction: row;
+    
 
     .navbar {
       flex-direction: column;
       justify-content: space-between;
       width: 100px;
-      height: 100vh;
+      min-height: 100vh;
+      border-radius: 0 35px 25px 0;
+    }
+
+    .nav-items{
+      flex-direction: column;
+      
+       hr{
+        min-height: 100px;
+        transform: rotate(90deg);
+        bottom: 10px;
+        left: 47%;       
+      }
+    }
+
+    .logo-wrapper{
+     min-width: 99px;
+     min-height: 102px;
+    }
+    .logo{
+      margin: 0 auto;
     }
 
     .main-content {
-      padding: 2rem;
-      flex-grow: 1;
+      padding: 0 1rem;
+      padding-top: 3rem;
+      margin: 0 auto;
+      max-width: 50%;
+      max-height: 100vh;
     }
   }
 }

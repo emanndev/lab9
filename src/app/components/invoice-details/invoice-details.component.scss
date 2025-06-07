@@ -27,7 +27,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
+      padding: 10px;
      
       
 
@@ -40,9 +40,10 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.25rem 0.75rem;
+        padding: 0.25rem 1.5rem;
         border-radius: 6px;
         font-weight: bold;
+       height: 40px;
 
         &.paid {
           background: #f3fcf9;
@@ -81,9 +82,8 @@
 
     .top-section h2 {
       margin-bottom: 0.25rem;
-        font-size: 12px;
-      font-weight: 300;
-      
+      font-size: 12px;
+      font-weight: bold;
 
     }
     .top-section span{
@@ -128,8 +128,11 @@
 
           p{
             color: $color-light-blue;
-            font-size: 15px;
+            font-size: 12px;
             font-weight: bold;
+          }
+          h3{
+            font-size: 15px;
           }
         }
 
@@ -141,8 +144,11 @@
 
            p{
             color: $color-light-blue;
-            font-size: 15px;
+            font-size: 12px;
             font-weight: bold;
+          }
+           h3{
+            font-size: 15px;
           }
         }
       }

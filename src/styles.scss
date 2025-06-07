@@ -18,9 +18,17 @@
     }
 }
 
- .invoice-container{
+.invoice-details{
+.invoice-container{
   background-color: $color-main-bg;
-    } 
+  .top-section h2{
+    color: $color-heading;
+   
+      
+  }
+} 
+}
+ 
  .header-container {
     h1, .action-group.label{
       color: $color-heading;  
