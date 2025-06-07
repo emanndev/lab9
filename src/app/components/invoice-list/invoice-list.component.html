@@ -7,7 +7,7 @@
   <div class="action-group">
     <div class="filter-dropdown">
        <div class="dropdown" (click)="toggleDropdown()" [class.open]="dropdownOpen">
-  <span class="dropdown-label" id="responsiveText">Filter</span>
+  <span class="dropdown-label" id="responsiveText">{{filterTextConfig | textChange}}</span>
   <img src="assets/images/icon-arrow-down.svg" alt="arrow" class="dropdown-arrow" />
 
   <div class="dropdown-menu" *ngIf="dropdownOpen">
@@ -23,7 +23,7 @@
       <span class="circle">
         <img src="assets/images/icon-plus.svg" alt="plus icon" />
       </span>
-      New
+      {{newInvoiceTextConfig | textChange }}
     </button>
   </div>
 </div>

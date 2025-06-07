@@ -3,19 +3,33 @@ import { Invoice } from '../../model/invoice.model';
 import { InvoiceService } from '../../services/invoice.service';
 import { CommonModule } from '@angular/common'; 
 import { RouterModule } from '@angular/router';
+import { TextChangePipe } from '../../shared/text-change.pipe';
 
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
   templateUrl: './invoice-list.component.html',
   styleUrls: ['./invoice-list.component.scss'],
-  imports: [CommonModule, RouterModule] 
+  imports: [CommonModule, RouterModule, TextChangePipe] 
 })
 export class InvoiceListComponent implements OnInit {
    invoices: Invoice[] = [];
      selectedStatuses: string[] = [];
      dropdownOpen: boolean = false;
 
+
+     //text change values based on screen sizes for the filter dropdown
+     filterTextConfig = {
+       mobile: 'Filter',
+       tablet: 'Filter by status',
+       desktop: 'Filter by status'
+     }
+
+     newInvoiceTextConfig = {
+      mobile: 'New',
+      tablet: 'New invoice',
+      desktop: 'New invoice'
+     }
 
   constructor(private invoiceService: InvoiceService) {}
 
