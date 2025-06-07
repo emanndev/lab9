@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from '../../model/invoice.model';
 import { InvoiceService } from '../../services/invoice.service';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TextChangePipe } from '../../shared/text-change.pipe';
 
@@ -10,50 +10,66 @@ import { TextChangePipe } from '../../shared/text-change.pipe';
   standalone: true,
   templateUrl: './invoice-list.component.html',
   styleUrls: ['./invoice-list.component.scss'],
-  imports: [CommonModule, RouterModule, TextChangePipe] 
+  imports: [CommonModule, RouterModule, TextChangePipe],
 })
 export class InvoiceListComponent implements OnInit {
-   invoices: Invoice[] = [];
-     selectedStatuses: string[] = [];
-     dropdownOpen: boolean = false;
+  invoices: Invoice[] = [];
+  selectedStatuses: string[] = [];
+  dropdownOpen: boolean = false;
 
+  //text change values based on screen sizes for the filter dropdown
+  filterTextConfig = {
+    mobile: 'Filter',
+    tablet: 'Filter by status',
+    desktop: 'Filter by status',
+  };
 
-     //text change values based on screen sizes for the filter dropdown
-     filterTextConfig = {
-       mobile: 'Filter',
-       tablet: 'Filter by status',
-       desktop: 'Filter by status'
-     }
-
-     newInvoiceTextConfig = {
-      mobile: 'New',
-      tablet: 'New invoice',
-      desktop: 'New invoice'
-     }
+  newInvoiceTextConfig = {
+    mobile: 'New',
+    tablet: 'New invoice',
+    desktop: 'New invoice',
+  };
 
   constructor(private invoiceService: InvoiceService) {}
 
   ngOnInit() {
     this.invoices = this.invoiceService.getInvoices();
+    this.invoiceTotal.mobile =
+      this.invoiceService.getInvoices().length + ' invoices';
+    this.invoiceTotal.tablet =
+      'There are ' +
+      this.invoiceService.getInvoices().length +
+      ' total invoices';
+    this.invoiceTotal.desktop =
+      'There are ' +
+      this.invoiceService.getInvoices().length +
+      ' total invoices';
   }
 
+  //invoices text change
+  invoiceTotal: { mobile: string; tablet: string; desktop: string } = {
+    mobile: '',
+    tablet: '',
+    desktop: '',
+  };
 
-   onStatusChange(status: string, event: Event) {
+  onStatusChange(status: string, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
     if (checked) {
       this.selectedStatuses.push(status);
     } else {
-      this.selectedStatuses = this.selectedStatuses.filter(s => s !== status);
+      this.selectedStatuses = this.selectedStatuses.filter((s) => s !== status);
     }
     this.loadInvoices();
   }
 
-   loadInvoices(): void {
-    this.invoices = this.invoiceService.getInvoicesByStatus(this.selectedStatuses);
+  loadInvoices(): void {
+    this.invoices = this.invoiceService.getInvoicesByStatus(
+      this.selectedStatuses
+    );
   }
 
   toggleDropdown() {
-  this.dropdownOpen = !this.dropdownOpen;
-}
-
+    this.dropdownOpen = !this.dropdownOpen;
+  }
 }

@@ -1,7 +1,8 @@
 .edit-invoice {
   padding: 1rem;
+  overflow-y: scroll;
 
-   .back-button {
+  .back-button {
     background: none;
     border: none;
     font-weight: bold;
@@ -82,5 +83,73 @@
         }
       }
     }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .edit-modal-overlay {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    background-color: rgba(90, 11, 11, 0.856);
+    background: transparent;
+    max-width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+  .edit-modal-panel {
+    max-width: 500px;
+    background-color: rgb(255, 255, 255);
+    color: var(--text-color);
+    width: 100%;
+    max-height: 100vh;
+    padding: 2rem;
+    overflow-y: auto;
+    animation: slideIn 0.3s ease-in-out;
+  }
+}
+
+@media (min-width: 1024px) {
+  .edit-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 103px;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    background-color: rgba(54, 54, 54, 0.2);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .edit-modal-panel {
+    max-width: 500px;
+    background-color: white;
+    color: var(--text-color);
+    width: 100%;
+    max-height: 100vh;
+    padding: 2rem;
+    overflow-y: auto;
+    animation: slideIn 0.3s ease-in-out;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.2;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

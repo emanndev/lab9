@@ -1,5 +1,4 @@
-@use '../variables' as *;
-
+@use "../variables" as *;
 
 .app-layout {
   display: flex;
@@ -14,25 +13,22 @@
     align-items: center;
 
     .logo-wrapper {
-    display: flex;
-    align-items: center;
-    background: url('/assets/images/rectangle.png') no-repeat center/cover;
-    padding: 20px;
-    margin: -16px;
-    width: 72px;
-    margin-left: -15px;
-    height: 75px;
-    border-radius: 0px 20px 20px 0px;
-}
-
-
+      display: flex;
+      align-items: center;
+      background: url("/assets/images/rectangle.png") no-repeat center/cover;
+      padding: 20px;
+      margin: -16px;
+      width: 72px;
+      margin-left: -15px;
+      height: 75px;
+      border-radius: 0px 20px 20px 0px;
+    }
 
     .logo {
       width: 40px;
       height: 40px;
-      background: url('/assets/images/logo.svg') no-repeat center/contain;
+      background: url("/assets/images/logo.svg") no-repeat center/contain;
     }
-
 
     .nav-items {
       display: flex;
@@ -40,13 +36,11 @@
       gap: 2rem;
       position: relative;
 
-       hr{
+      hr {
         position: absolute;
         right: 50px;
         opacity: 0.2;
         height: 76px;
-        
-       
       }
       .icon {
         width: 20px;
@@ -66,10 +60,8 @@
     flex-grow: 1;
   }
 
-
   @media (min-width: 1024px) {
     flex-direction: row;
-    
 
     .navbar {
       flex-direction: column;
@@ -79,22 +71,22 @@
       border-radius: 0 35px 25px 0;
     }
 
-    .nav-items{
+    .nav-items {
       flex-direction: column;
-      
-       hr{
+
+      hr {
         min-height: 100px;
         transform: rotate(90deg);
         bottom: 10px;
-        left: 47%;       
+        left: 47%;
       }
     }
 
-    .logo-wrapper{
-     min-width: 99px;
-     min-height: 102px;
+    .logo-wrapper {
+      min-width: 99px;
+      min-height: 102px;
     }
-    .logo{
+    .logo {
       margin: 0 auto;
     }
 

@@ -1,147 +1,157 @@
-@use './variables' as *;
+@use "./variables" as *;
 
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
 
-
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'League Spartan';
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "League Spartan";
 }
 
-.app-layout{
-
-    .navbar{
-    background-color: $color-draft;;
-    }
-}
-
-.invoice-details{
-.invoice-container{
-  background-color: $color-main-bg;
-  .top-section h2{
-    color: $color-heading;
-   
-      
+.app-layout {
+  .navbar {
+    background-color: $color-draft;
   }
-} 
 }
- 
- .header-container {
-    h1, .action-group.label{
-      color: $color-heading;  
-    }
-        p{
-            color: $color-body;
-        }
-    }
 
-.invoice-card{
+.invoice-details {
+  .invoice-container {
     background-color: $color-main-bg;
-    .top .id{
-    color: $color-heading;
-
+    .top-section h2 {
+      color: $color-heading;
     }
-    .middle .due{
-        color: $color-void;
-    }
-    .middle .amount{
-        color: $color-heading;
-    }
- 
-    .status{
-        &.paid {
-            background-color: #f3fcf9;
-            color: $color-paid;
-            .dot{
-                background-color: $color-paid;
-            }
-          }
-          &.pending {
-            background-color: #fff4e5;
-            color: $color-pending;
-            .dot{
-                background-color: $color-pending;
-            }
-          }
-          &.draft {
-            background-color: #f4f4f5;
-            color: $color-draft;
-            .dot{
-                 background-color: $color-draft;
-            }
-          }
-
-    }
+  }
 }
 
+.header-container {
+  h1,
+  .action-group.label {
+    color: $color-heading;
+  }
+  p {
+    color: $color-body;
+  }
+}
 
+.invoice-card {
+  background-color: $color-main-bg;
+  .top .id {
+    color: $color-heading;
+  }
+  .middle .due {
+    color: $color-void;
+  }
+  .middle .amount {
+    color: $color-heading;
+  }
 
+  .status {
+    &.paid {
+      background-color: #f3fcf9;
+      color: $color-paid;
+      .dot {
+        background-color: $color-paid;
+      }
+    }
+    &.pending {
+      background-color: #fff4e5;
+      color: $color-pending;
+      .dot {
+        background-color: $color-pending;
+      }
+    }
+    &.draft {
+      background-color: #f4f4f5;
+      color: $color-draft;
+      .dot {
+        background-color: $color-draft;
+      }
+    }
+  }
+}
+
+.empty-state {
+  h2 {
+    color: $color-heading;
+  }
+  p {
+    color: $color-body;
+  }
+  span {
+    font-weight: bold;
+  }
+}
 
 //dark theme
 .dark-theme {
-    background-color: $color-dark-bg;
-    color: $color-white;
+  background-color: $color-dark-bg;
+  color: $color-white;
 
-    .app-layout{
-
-    .navbar{
-    background-color: $dark-navbar;
+  .app-layout {
+    .navbar {
+      background-color: $dark-navbar;
     }
-}
+  }
 
-    .invoice-card{
-        background-color: $dark-input-bg;
-    .top .id{
-    color: $color-main-bg;
-
+  .invoice-card {
+    background-color: $dark-input-bg;
+    .top .id {
+      color: $color-main-bg;
     }
-    .middle .due{
-        color: $color-light;
+    .middle .due {
+      color: $color-light;
     }
-    .middle .amount{
-        color: $color-main-bg;
+    .middle .amount {
+      color: $color-main-bg;
     }
 
-    .status{
-        &.paid {
-            background-color: $color-paid-dark;
-            color: $color-paid;
-            .dot{
-                background-color: $color-paid;
-            }
-          }
-          &.pending {
-            background-color: $color-pending-dark;
-            color: $color-pending;
-            .dot{
-                background-color: $color-pending;
-            }
-          }
-          &.draft {
-            background-color: $color-draft-dark;
-            color: $color-light;
-            .dot{
-                 background-color: $color-light;
-            }
-          }
-
-    }
-        
-}
-
- .invoice-container{
-  background-color: $color-main-bg;
-    } 
- .header-container {
-    h1, .action-group.label{
-      color: $color-main-bg;  
-    }
-        p{
-            color: $color-light;
+    .status {
+      &.paid {
+        background-color: $color-paid-dark;
+        color: $color-paid;
+        .dot {
+          background-color: $color-paid;
         }
+      }
+      &.pending {
+        background-color: $color-pending-dark;
+        color: $color-pending;
+        .dot {
+          background-color: $color-pending;
+        }
+      }
+      &.draft {
+        background-color: $color-draft-dark;
+        color: $color-light;
+        .dot {
+          background-color: $color-light;
+        }
+      }
     }
-}
+  }
 
+  .invoice-container {
+    background-color: $color-main-bg;
+  }
+  .header-container {
+    h1,
+    .action-group.label {
+      color: $color-main-bg;
+    }
+    p {
+      color: $color-light;
+    }
+  }
+
+  .empty-state {
+    h2,
+    span {
+      color: $dark-text;
+    }
+    p {
+      color: $color-void;
+    }
+  }
+}

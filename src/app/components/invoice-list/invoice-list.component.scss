@@ -1,4 +1,4 @@
-@use '../../../variables' as *;
+@use "../../../variables" as *;
 
 .header-container {
   display: flex;
@@ -10,7 +10,6 @@
     h1 {
       margin: 0;
       font-size: 24px;
-      
       font-weight: bold;
     }
 
@@ -26,53 +25,57 @@
     align-items: center;
     gap: 1rem;
 
-
-
     .filter-dropdown {
       display: flex;
       align-items: center;
       gap: 0.5rem;
 
-      
       .dropdown {
-      position: relative;
-      cursor: pointer;
-      user-select: none;
+        position: relative;
+        cursor: pointer;
+        user-select: none;
 
-      .dropdown-label {
-        margin-right: 8px;
-      }
+        .dropdown-label {
+          margin-right: 8px;
+        }
 
-      .dropdown-arrow {
-        width: 12px;
-        transform: rotate(0deg);
-        transition: transform 0.2s ease;
-      }
+        .dropdown-arrow {
+          width: 12px;
+          transform: rotate(0deg);
+          transition: transform 0.2s ease;
+        }
 
-      &.open .dropdown-arrow {
-        transform: rotate(180deg);
-      }
+        &.open .dropdown-arrow {
+          transform: rotate(180deg);
+        }
 
-      .dropdown-menu {
-        position: absolute;
-        top: 120%;
-        left: 0;
-        background-color: var(--input-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 1rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        z-index: 100;
+        .dropdown-menu {
+          position: absolute;
+          top: 120%;
+          left: 0;
+          background-color: white;
+          border: 1px solid rgb(175, 175, 175);
+          border-radius: 8px;
+          padding: 1rem;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.09);
+          z-index: 100;
+          width: 100px;
 
-        label {
-          display: block;
-          margin-bottom: 0.5rem;
-          font-size: 14px;
-          color: var(--text-color);
+          label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 15px;
+            color: $color-heading;
+          }
+
+          input[type="checkbox"] {
+            border: 2px solid #2a1092;
+            cursor: pointer;
+            background: $color-void;
+          }
         }
       }
-      }
- }
+    }
 
     .new-invoice-button {
       display: flex;
@@ -102,8 +105,6 @@
         }
       }
     }
-
-    
   }
 }
 .invoice-card {
@@ -114,12 +115,12 @@
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
   transition: border ease-in-out 0.15s;
 
-  &:hover{
+  &:hover {
     border: 1px solid $color-purple-light;
     cursor: pointer;
   }
 
-  .right-arrow{
+  .right-arrow {
     display: none;
   }
 
@@ -129,14 +130,13 @@
     margin-bottom: 0.5rem;
     align-items: center;
   }
-  .bottom{
+  .bottom {
     display: flex;
     position: relative;
     bottom: 20px;
-    justify-self:flex-end;
+    justify-self: flex-end;
     align-items: center;
     vertical-align: middle;
-
   }
   .middle {
     display: flex;
@@ -180,7 +180,6 @@
     margin-left: auto;
     height: 40px;
 
-
     &.paid {
       // background-color: #f3fcf9;
       // color: #33d69f;
@@ -190,7 +189,7 @@
 
       // .dot {
       //   // background-color: #33d69f;
-     
+
       // }
     }
 
@@ -209,11 +208,10 @@
       text-align: center;
       margin-right: 15px;
       width: 100%;
-      
 
       // .dot {
       //   // background-color: #373b53;
-       
+
       // }
     }
 
@@ -226,68 +224,76 @@
   }
 }
 
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8rem;
 
+  h2,
+  p {
+    margin-top: 1rem;
+    text-align: center;
+  }
+}
 
-@media (min-width: 1024px){
-  .header-container{
+@media (min-width: 1024px) {
+  .header-container {
     margin-bottom: 2rem;
     margin-top: -5px;
+
+    .list-header {
+      h1 {
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      p {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+    }
   }
 
- .list-header {
-  
-    h1 {
-     font-size: 32px;
-      font-weight: bold;
-    }
-
-    p {
-      
-      font-size: 14px;
-    }
-  }
-
-
-  .invoice-card{
+  .invoice-card {
     position: relative;
     height: 72px;
     margin-bottom: 1rem;
-  
-  .top .id{
-    position: absolute;
-    top: 40%;
-    left: 5%;
-  }
 
-   .top .client{
-    position: absolute;
-    top: 40%;
-    left: 45%;
-  }
+    .top .id {
+      position: absolute;
+      top: 40%;
+      left: 5%;
+    }
 
-  .middle .due{
-     position: absolute;
-    top: 40%;
-    left: 22%;
-  }
+    .top .client {
+      position: absolute;
+      top: 40%;
+      left: 45%;
+    }
 
-  .middle .amount{
-     position: absolute;
-    top: 40%;
-    left: 65%;
-  }
-  .bottom .status{
-    margin-top: 10px;
-    margin-right: 40px;
-  }
+    .middle .due {
+      position: absolute;
+      top: 40%;
+      left: 22%;
+    }
 
-  .right-arrow{
-    display: block;
-    position: absolute;
-    top: 40%;
-    right: 2%;
-  }
-  }
+    .middle .amount {
+      position: absolute;
+      top: 40%;
+      left: 65%;
+    }
+    .bottom .status {
+      margin-top: 10px;
+      margin-right: 40px;
+    }
 
+    .right-arrow {
+      display: block;
+      position: absolute;
+      top: 40%;
+      right: 2%;
+    }
+  }
 }
-
