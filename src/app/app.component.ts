@@ -8,7 +8,7 @@ import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.com
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [ RouterOutlet, ThemeToggleComponent ]
+  imports: [RouterOutlet, ThemeToggleComponent],
 })
 export class AppComponent {
   title = 'invoice-app';

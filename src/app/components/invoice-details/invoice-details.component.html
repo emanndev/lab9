@@ -5,16 +5,15 @@
 
   <div *ngIf="invoice" class="invoice-container">
     <div class="status-card">
-        <span>Status</span>
-        <div class="status" [ngClass]="invoice.status">
+      <span>Status</span>
+      <div class="status" [ngClass]="invoice.status">
         <span class="dot"></span>
         {{ invoice.status | titlecase }}
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
 
   <div *ngIf="invoice" class="invoice-container">
-    
     <div class="invoice-box">
       <div class="top-section">
         <h2><span>#</span>{{ invoice.id }}</h2>
@@ -31,12 +30,12 @@
       <div class="billing-section">
         <div class="dates">
           <div class="invoice-info">
-          <p>Invoice Date</p>
-          <h3>{{ invoice.createdAt | date: 'dd MMM yyyy' }}</h3>
+            <p>Invoice Date</p>
+            <h3>{{ invoice.createdAt | date : "dd MMM yyyy" }}</h3>
           </div>
           <div class="payment-info">
-          <p>Payment Due</p>
-          <h3>{{ invoice.paymentDue | date: 'dd MMM yyyy' }}</h3>
+            <p>Payment Due</p>
+            <h3>{{ invoice.paymentDue | date : "dd MMM yyyy" }}</h3>
           </div>
         </div>
 
@@ -44,21 +43,18 @@
           <p>Bill To</p>
           <h3>{{ invoice.clientName }}</h3>
           <div class="clientAdress-info">
-          <p>{{ invoice.clientAddress.street }}</p>
-          <p>{{ invoice.clientAddress.city }}</p>
-          <p>{{ invoice.clientAddress.postCode }}</p>
-          <p>{{ invoice.clientAddress.country }}</p>
+            <p>{{ invoice.clientAddress.street }}</p>
+            <p>{{ invoice.clientAddress.city }}</p>
+            <p>{{ invoice.clientAddress.postCode }}</p>
+            <p>{{ invoice.clientAddress.country }}</p>
           </div>
-          
         </div>
-
-       
       </div>
 
-       <div class="email-info">
-          <p>Sent to</p>
-          <h3>{{ invoice.clientEmail }}</h3>
-        </div>
+      <div class="email-info">
+        <p>Sent to</p>
+        <h3>{{ invoice.clientEmail }}</h3>
+      </div>
 
       <div class="item-list">
         <div class="item" *ngFor="let item of invoice.items">
@@ -77,18 +73,26 @@
     </div>
 
     <div class="action-bar">
-      <button class="edit-btn" [routerLink] = "['/invoices', invoice.id, 'edit']" >Edit</button>
+      <button class="edit-btn" [routerLink]="['/invoices', invoice.id, 'edit']">
+        Edit
+      </button>
       <button class="delete-btn" (click)="toggleDeleteConfirm()">Delete</button>
-      <button class="paid-btn" (click)="markAsPaid()" [disabled]="invoice.status === 'paid'">
+      <button
+        class="paid-btn"
+        (click)="markAsPaid()"
+        [disabled]="invoice.status === 'paid'"
+      >
         Mark as Paid
       </button>
     </div>
 
-   
     <div class="modal" *ngIf="confirmDelete">
       <div class="modal-content">
         <h3>Confirm Deletion</h3>
-        <p>Are you sure you want to delete invoice #{{ invoice.id }}? This action cannot be undone.</p>
+        <p>
+          Are you sure you want to delete invoice #{{ invoice.id }}? This action
+          cannot be undone.
+        </p>
         <div class="modal-actions">
           <button (click)="toggleDeleteConfirm()">Cancel</button>
           <button class="delete-btn" (click)="deleteInvoice()">Delete</button>

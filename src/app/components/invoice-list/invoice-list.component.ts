@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Invoice } from '../../model/invoice.model';
 import { InvoiceService } from '../../services/invoice.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, RouterLink } from '@angular/router';
 import { TextChangePipe } from '../../shared/text-change.pipe';
+import { NewInvoiceFormComponent } from '../new-invoice-form/new-invoice-form.component';
 
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
   templateUrl: './invoice-list.component.html',
   styleUrls: ['./invoice-list.component.scss'],
-  imports: [CommonModule, RouterModule, TextChangePipe],
+  imports: [CommonModule, RouterModule, TextChangePipe, RouterLink],
 })
 export class InvoiceListComponent implements OnInit {
   invoices: Invoice[] = [];
@@ -44,6 +45,8 @@ export class InvoiceListComponent implements OnInit {
       'There are ' +
       this.invoiceService.getInvoices().length +
       ' total invoices';
+
+    this.loadInvoicesData();
   }
 
   //invoices text change
@@ -71,5 +74,17 @@ export class InvoiceListComponent implements OnInit {
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  private loadInvoicesData() {
+    this.invoices = this.invoiceService.getInvoices();
+    this.updateInvoiceTotal();
+  }
+
+  private updateInvoiceTotal() {
+    const count = this.invoices.length;
+    this.invoiceTotal.mobile = count + ' invoices';
+    this.invoiceTotal.tablet = 'There are ' + count + ' total invoices';
+    this.invoiceTotal.desktop = 'There are ' + count + ' total invoices';
   }
 }

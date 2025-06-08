@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormArray,
@@ -19,6 +19,13 @@ import { Invoice } from '../../model/invoice.model';
 export class EditInvoiceFormComponentComponent implements OnInit {
   invoiceForm!: FormGroup;
   invoiceId: string = '';
+  invoice: Invoice = {} as Invoice;
+
+  // @Input() isNew: boolean = false;
+
+  // @Output() saveDraft = new EventEmitter<Invoice>();
+  // @Output() saveFinal = new EventEmitter<Invoice>();
+  // @Output() discard = new EventEmitter<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -115,4 +122,9 @@ export class EditInvoiceFormComponentComponent implements OnInit {
   closeOnBackdrop(event: MouseEvent) {
     this.router.navigate(['/invoices', this.invoiceId]);
   }
+
+  // onSaveDraftClick() {
+  //   const invoice = this.invoiceForm.value as Invoice;
+  //   this.saveDraft.emit(invoice); // ✅ This must emit Invoice
+  // }
 }

@@ -101,7 +101,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    overflow-y: auto;
+    overflow-y: scroll;
   }
   .edit-modal-panel {
     max-width: 500px;
@@ -110,7 +110,6 @@
     width: 100%;
     max-height: 100vh;
     padding: 2rem;
-    overflow-y: auto;
     animation: slideIn 0.3s ease-in-out;
   }
 }
@@ -128,7 +127,6 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    overflow-y: auto;
   }
 
   .edit-modal-panel {
