@@ -1,26 +1,7 @@
-// .custom-toast {
-//   background-color: #1e2139 !important;
-//   color: #dfe3fa !important;
-//   font-family: "Spartan", sans-serif;
-//   border-radius: 8px;
-//   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-//   padding: 12px 16px !important;
-//   animation: fadeInScale 0.3s ease-out;
-// }
-
-// @keyframes fadeInScale {
-//   from {
-//     opacity: 0;
-//     transform: scale(0.95);
-//   }
-//   to {
-//     opacity: 1;
-//     transform: scale(1);
-//   }
-// }
+@use "../../../variables" as *;
 
 .form-container {
-  background: white;
+  background: $color-white;
   min-height: 100vh;
   padding: 0;
 
@@ -49,12 +30,12 @@
     border: none;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #7c5dfa;
+    color: $color-purple-light;
     cursor: pointer;
     margin-bottom: 1.5rem;
 
     &:hover {
-      color: #9277ff;
+      color: $color-purple;
     }
 
     img {
@@ -88,7 +69,7 @@
   margin-bottom: 2.5rem;
 
   h3 {
-    color: #7c5dfa;
+    color: $color-purple-light;
     font-size: 0.875rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
@@ -102,7 +83,7 @@
     display: block;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #7e88c3;
+    color: $color-light-blue;
     margin-bottom: 0.5rem;
   }
 
@@ -238,23 +219,23 @@
 .add-item-btn {
   width: 100%;
   padding: 1rem;
-  background: #f9fafe;
+  background: $color-btn-bg;
   border: none;
   border-radius: 24px;
-  color: #7e88c3;
+  color: $color-light-blue;
   font-size: 0.875rem;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s;
 
   &:hover {
-    background: #dfe3fa;
+    background: $color-light;
   }
 }
 
 .form-actions {
   padding: 1.5rem;
-  background: white;
+  background: $color-white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -266,8 +247,8 @@
   }
 
   .btn-discard {
-    background: #f9fafe;
-    color: #7e88c3;
+    background: $color-btn-bg;
+    color: $color-light-blue;
     border: none;
     padding: 1rem 1.5rem;
     border-radius: 24px;
@@ -277,7 +258,7 @@
     transition: background-color 0.2s;
 
     &:hover {
-      background: #dfe3fa;
+      background: $color-light;
     }
 
     @media (max-width: 640px) {
@@ -313,20 +294,20 @@
   }
 
   .btn-draft {
-    background: #373b53;
-    color: white;
+    background: $color-draft;
+    color: $color-white;
 
     &:hover {
-      background: #0c0e16;
+      background: $color-heading;
     }
   }
 
   .btn-save {
-    background: #7c5dfa;
-    color: white;
+    background: $color-purple-light;
+    color: $color-white;
 
     &:hover {
-      background: #9277ff;
+      background: $color-purple;
     }
   }
 }

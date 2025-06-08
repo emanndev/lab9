@@ -1,6 +1,30 @@
-# InvoiceApp
+# Invoice Management App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
+A responsive Angular application for managing invoices, supporting invoice creation, editing, deletion, status updates, filtering, theme toggling, and local storage persistence.
+
+## This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14
+
+## 🚀 Project Description
+
+This project provides a modern UI for managing invoices. Users can view a list of invoices, filter by status, add new invoices, edit existing ones, and switch between light and dark themes. It is built using Angular with SCSS for styling and uses local storage for data persistence.
+
+---
+
+## ⚙️ Setup & Run Instructions
+
+### Prerequisites
+
+- Node.js >= 16
+- Angular CLI installed globally: `npm install -g @angular/cli`
+
+## Clone the repository
+
+git clone [repository-url]
+cd invoice-app
+
+## Install dependencies
+
+npm install
 
 ## Development server
 
@@ -12,48 +36,84 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+## ✨ Application Features
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Invoice creation, editing, deletion
+- Dark/Light theme toggle
+- Fully responsive UI (mobile, tablet, desktop)
+- Editable and dynamic item list form section
+- Route-based navigation
+- Scrollable edit modal with blur overlay
+- Form validations
+- LocalStorage-based persistence
+- Filtering by status (Paid, Pending, Draft)
+
+---
+
+## 🧩 Component Structure
+
+- `AppComponent` – Main layout including the sidebar, theme toggle, and routing
+- `InvoiceListComponent` – Displays invoices list with filtering and navigation
+- `InvoiceDetailsComponent` – Detailed view of a specific invoice
+- `EditInvoiceFormComponent` – For editing invoices
+- `NewInvoiceComponent` – For adding new invoices
+
+## 🧭 Routing Overview
+
+| Route                | Component                 | Description                       |
+| -------------------- | ------------------------- | --------------------------------- |
+| `/`                  | Redirect                  | Redirects to `/invoices`          |
+| `/invoices`          | `InvoiceListComponent`    | Displays all invoices             |
+| `/invoices/new`      | `NewInvoiceComponent`     | Form to create a new invoice      |
+| `/invoices/:id`      | `InvoiceDetailsComponent` | Detailed view of selected invoice |
+| `/invoices/:id/edit` | `EditInvoiceComponent`    | Edit form shown as modal          |
+
+---
+
+## 🧾 Form Implementation
+
+- Reactive Forms are used throughout.
+- `FormArray` for dynamic `items` list.
+- Scrollable edit form panel.
+- Field validation.
+
+---
+
+## 🔁 Git Workflow
+
+1. **Feature Branching**:
+
+````bash
+git checkout -b feature/your-feature
+
+
+2. **Commit Often**:
 
 ```bash
-ng generate component component-name
-```
+git add .
+git commit -m "feat: add invoice filter dropdown"
+````
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. **Push and PR**:
 
-```bash
-ng generate --help
-```
+   ```bash
+   git push origin feature/your-feature
+   # Open a pull request from GitHub
+   ```
 
-## Building
+1. **Merge to Production**:
 
-To build the project run:
+   - Always test on `development` branch first.
+   - After approval, merge `development` into `production`.
 
-```bash
-ng build
-```
+## 📦 Extras
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- `localStorage` for persisting invoice changes
+- Responsive scrollable modals using pure CSS
+- SCSS theming with variables for light/dark modes
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## License
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+No License

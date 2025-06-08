@@ -125,7 +125,7 @@
         height: 40px;
         border-radius: 24px;
 
-         .add-item-btn {
+        .add-item-btn {
           background-color: $color-btn-bg;
           color: $color-light-blue;
           border: none;
@@ -170,15 +170,15 @@
     bottom: 0;
     z-index: 1000;
     backdrop-filter: blur(5px);
-    background-color: rgba(90, 11, 11, 0.856); 
+    background-color: rgba(90, 11, 11, 0.856);
     background: transparent;
     max-width: 80%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-  overflow-y: auto; 
+    overflow-y: auto;
 
-  // WebKit (Chrome, Edge, Safari)
+    // WebKit (Chrome, Edge, Safari)
     &::-webkit-scrollbar {
       width: 8px;
     }
@@ -213,8 +213,6 @@
     max-height: 100vh;
     padding: 2rem;
     animation: slideIn 0.3s ease-in-out;
-
-    
   }
 }
 

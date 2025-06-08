@@ -82,8 +82,8 @@
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem 1rem;
-      background-color: #7c5dfa;
-      color: white;
+      background-color: $color-purple-light;
+      color: $color-white;
       border: none;
       border-radius: 30px;
       font-weight: bold;
@@ -91,8 +91,8 @@
       cursor: pointer;
 
       .circle {
-        background-color: white;
-        color: #7c5dfa;
+        background-color: $color-white;
+        color: $color-purple-light;
         border-radius: 50%;
         width: 28px;
         height: 28px;
@@ -150,11 +150,11 @@
   }
 
   .client-Id {
-    color: #888eb0;
+    color: $color-void;
     font-size: 14px;
   }
   .client {
-    color: #888eb0;
+    color: $color-void;
     font-size: 14px;
   }
 
