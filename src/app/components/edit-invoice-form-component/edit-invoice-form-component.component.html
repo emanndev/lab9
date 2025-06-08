@@ -5,34 +5,75 @@
 <div class="edit-modal-overlay" (click)="closeOnBackdrop($event)">
   <div class="edit-modal-panel" (click)="$event.stopPropagation()">
     <div class="edit-invoice">
-      <h2>Edit Invoice #{{ invoiceForm.get("id")?.value }}</h2>
+      <h2>Edit <span>#</span>{{ invoiceForm.get("id")?.value }}</h2>
       <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
         <div class="section">
           <h3>Bill From</h3>
-          <input formControlName="description" placeholder="Description" />
-          <div formGroupName="senderAddress">
-            <input formControlName="street" placeholder="Street Address" />
-            <input formControlName="city" placeholder="City" />
-            <input formControlName="postCode" placeholder="Post Code" />
-            <input formControlName="country" placeholder="Country" />
+          <div formGroupName="senderAddress" class="sender-address">
+            <div class="street-address">
+              <label for="street">Street Address</label>
+              <input formControlName="street" placeholder="Street Address" />
+            </div>
+
+            <div class="address-info">
+              <div>
+                <label for="city">City</label><br />
+                <input formControlName="city" placeholder="City" />
+              </div>
+              <div>
+                <label for="postCode">Post Code</label><br />
+                <input formControlName="postCode" placeholder="Post Code" />
+              </div>
+            </div>
+
+            <div class="country">
+              <label for="country">Country</label>
+              <input formControlName="country" placeholder="Country" />
+            </div>
           </div>
         </div>
 
         <div class="section">
           <h3>Bill To</h3>
-          <input formControlName="clientName" placeholder="Client Name" />
-          <input formControlName="clientEmail" placeholder="Client Email" />
+          <div>
+            <label for="clientName">Client's Name</label>
+            <input formControlName="clientName" placeholder="Client Name" />
+          </div>
+          <div>
+            <label for="clientEmail">Client's Email</label>
+            <input formControlName="clientEmail" placeholder="Client Email" />
+          </div>
+
           <div formGroupName="clientAddress">
-            <input formControlName="street" placeholder="Street Address" />
-            <input formControlName="city" placeholder="City" />
-            <input formControlName="postCode" placeholder="Post Code" />
-            <input formControlName="country" placeholder="Country" />
+            <div>
+              <label for="street">Street Address</label>
+              <input formControlName="street" placeholder="Street Address" />
+            </div>
+            <div class="address-info">
+              <div>
+                <label for="city">City</label>
+                <input formControlName="city" placeholder="City" />
+              </div>
+              <div>
+                <label for="postCode">Post Code</label>
+                <input formControlName="postCode" placeholder="Post Code" />
+              </div>
+            </div>
+            <div>
+              <label for="country">Country</label>
+              <input formControlName="country" placeholder="Country" />
+            </div>
           </div>
         </div>
 
         <div class="section">
           <label>Invoice Date</label>
-          <input formControlName="createdAt" type="date" />
+          <input
+            formControlName="createdAt"
+            type="date"
+            [disabled]="true"
+            placeholder="{{ invoiceForm.get('createdAt')?.value | date }}"
+          />
 
           <label>Payment Terms</label>
           <select formControlName="paymentTerms">
@@ -41,27 +82,68 @@
             <option value="7">Net 7 Days</option>
             <option value="1">Net 1 Day</option>
           </select>
+
+          <label for="description">Project/Description</label>
+          <input formControlName="description" placeholder="Graphic Design" />
         </div>
 
         <div class="section">
-          <h3>Item List</h3>
-          <div
-            class="item"
-            *ngFor="let item of items.controls; let i = index"
-            [formGroupName]="i"
-          >
-            <input formControlName="name" placeholder="Item Name" />
-            <input formControlName="quantity" type="number" placeholder="Qty" />
-            <input formControlName="price" type="number" placeholder="Price" />
-            <input
-              formControlName="total"
-              type="number"
-              placeholder="Total"
-              [disabled]="false"
-            />
-            <button type="button" (click)="removeItem(i)">Remove</button>
+          <h3 class="item-list-title">Item List</h3>
+          <div class="items-container">
+            <div
+              class="item"
+              *ngFor="let item of items.controls; let i = index"
+              [formGroupName]="i"
+            >
+              <div class="item-list-name">
+                <label for="name">Item Name</label>
+                <input
+                  formControlName="name"
+                  placeholder="Banner Design"
+                  type="text"
+                />
+              </div>
+              <div class="item-list-info">
+                <div class="item-list-quantity">
+                  <label for="quantity">Qty.</label>
+                  <input
+                    formControlName="quantity"
+                    type="number"
+                    placeholder="2"
+                  />
+                </div>
+                <div class="item-list-price">
+                  <label for="price">Price</label>
+                  <input
+                    formControlName="price"
+                    type="number"
+                    placeholder="200.00"
+                  />
+                </div>
+                <div class="item-list-total">
+                  <label for="total">Total</label>
+                  <input
+                    formControlName="total"
+                    type="number"
+                    placeholder="400.00"
+                    [disabled]="true"
+                  />
+                </div>
+                <button
+                  type="button"
+                  (click)="removeItem(i)"
+                  class="delete-item-btn"
+                >
+                  <img src="assets/images/icon-delete.svg" alt="Delete" />
+                </button>
+              </div>
+            </div>
           </div>
-          <button type="button" (click)="addItem()">+ Add New Item</button>
+          <div class="add-item-container">
+            <button class="add-item-btn" type="button" (click)="addItem()">
+              + Add New Item
+            </button>
+          </div>
         </div>
 
         <div class="form-actions">

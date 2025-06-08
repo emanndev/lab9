@@ -1,21 +1,28 @@
+@use "../../../variables" as *;
+
+.back-button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  color: $color-heading;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
 .edit-invoice {
   padding: 1rem;
-  overflow-y: scroll;
-
-  .back-button {
-    background: none;
-    border: none;
-    font-weight: bold;
-    color: #7c5dfa;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-  }
 
   h2 {
     margin-bottom: 1rem;
+    font-size: 24px;
+    font-weight: bold;
+
+    span {
+      color: $color-void;
+    }
   }
 
   form {
@@ -31,56 +38,124 @@
 
       h3 {
         margin-bottom: 1rem;
+        font-size: 12px;
+        font-weight: bold;
+        color: $color-purple-light;
+      }
+
+      label {
+        color: $color-void;
+        gap: 0.5rem;
+        font-size: 12px;
       }
 
       input,
       select {
         display: block;
         width: 100%;
-        padding: 0.5rem;
+        padding: 1rem;
         margin-bottom: 1rem;
         border: 1px solid #ccc;
         border-radius: 6px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+      .address-info {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
       }
 
-      .item {
+      .item-list-title {
+        margin-bottom: 1rem;
+        font-size: 18px;
+        font-weight: bold;
+        color: $color-void-dark;
+      }
+      .items-container {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+        flex-direction: column;
+        gap: 1rem;
 
-        input {
-          flex: 1 1 22%;
+        .item-list-name {
+          input[type="text"] {
+            font-size: 12px;
+            font-weight: bold;
+            color: $color-heading;
+          }
         }
 
-        button {
-          background: none;
+        .item-list-info {
+          display: flex;
+          flex-direction: row;
+          gap: 0.5rem;
+          input {
+            padding: 10px 7px 10px 7px;
+          }
+        }
+        .item-list-total {
+          input {
+            border: none;
+          }
+        }
+      }
+
+      .delete-item-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding-left: 8px;
+        align-self: center;
+
+        img {
+          width: 12px;
+          height: 16px;
+        }
+
+        &:hover img {
+          filter: brightness(0.8);
+        }
+      }
+      .add-item-container {
+        display: flex;
+        justify-content: center;
+        margin: 30px 0;
+        background-color: $color-btn-bg;
+        height: 40px;
+        border-radius: 24px;
+
+         .add-item-btn {
+          background-color: $color-btn-bg;
+          color: $color-light-blue;
           border: none;
-          color: #ec5757;
           font-weight: bold;
+          cursor: pointer;
         }
       }
     }
+  }
 
-    .form-actions {
-      display: flex;
-      justify-content: space-between;
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
 
-      button {
-        padding: 0.5rem 1.5rem;
-        border: none;
-        border-radius: 24px;
-        font-weight: bold;
-        cursor: pointer;
+    button {
+      padding: 0.5rem 1.5rem;
+      border: none;
+      border-radius: 24px;
+      font-weight: bold;
+      cursor: pointer;
 
-        &:first-child {
-          background: #f9fafe;
-          color: #7c5dfa;
-        }
+      &:first-child {
+        background: #f9fafe;
+        color: #7c5dfa;
+      }
 
-        &:last-child {
-          background: #7c5dfa;
-          color: white;
-        }
+      &:last-child {
+        background: #7c5dfa;
+        color: white;
       }
     }
   }
@@ -95,22 +170,51 @@
     bottom: 0;
     z-index: 1000;
     backdrop-filter: blur(5px);
-    background-color: rgba(90, 11, 11, 0.856);
+    background-color: rgba(90, 11, 11, 0.856); 
     background: transparent;
     max-width: 80%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    overflow-y: scroll;
+  overflow-y: auto; 
+
+  // WebKit (Chrome, Edge, Safari)
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--scroll-thumb);
+      border-radius: 8px;
+      margin: 20px 0; // doesn't affect thumb height directly
+      min-height: 30px; // set a smaller minimum height
+      background-clip: padding-box;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--scroll-thumb-hover);
+    }
+
+    // Firefox
+    scrollbar-color: var(--scroll-thumb) transparent;
+    scrollbar-width: thin;
   }
+
   .edit-modal-panel {
-    max-width: 500px;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--input-bg);
     color: var(--text-color);
     width: 100%;
     max-height: 100vh;
     padding: 2rem;
     animation: slideIn 0.3s ease-in-out;
+
+    
   }
 }
 
@@ -138,9 +242,35 @@
     padding: 2rem;
     overflow-y: auto;
     animation: slideIn 0.3s ease-in-out;
+
+    // WebKit (Chrome, Edge, Safari)
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--scroll-thumb);
+      border-radius: 8px;
+      margin: 20px 0; // doesn't affect thumb height directly
+      min-height: 0px; // set a smaller minimum height
+      background-clip: padding-box;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: var(--scroll-thumb-hover);
+    }
+
+    // Firefox
+    scrollbar-color: var(--scroll-thumb) transparent;
+    scrollbar-width: thin;
   }
 }
-
 @keyframes slideIn {
   from {
     transform: translateX(-100%);

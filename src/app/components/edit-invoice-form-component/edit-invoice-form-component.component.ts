@@ -6,13 +6,17 @@ import {
   ReactiveFormsModule,
   FormGroup,
   Validators,
+  FormsModule,
 } from '@angular/forms';
 import { InvoiceService } from '../../services/invoice.service';
 import { Invoice } from '../../model/invoice.model';
+import { CommonModule } from '@angular/common';
+import { DateFormatPipe } from '../../shared/date-format.pipe';
+
 @Component({
   selector: 'app-edit-invoice-form-component',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './edit-invoice-form-component.component.html',
   styleUrl: './edit-invoice-form-component.component.scss',
 })
@@ -20,12 +24,6 @@ export class EditInvoiceFormComponentComponent implements OnInit {
   invoiceForm!: FormGroup;
   invoiceId: string = '';
   invoice: Invoice = {} as Invoice;
-
-  // @Input() isNew: boolean = false;
-
-  // @Output() saveDraft = new EventEmitter<Invoice>();
-  // @Output() saveFinal = new EventEmitter<Invoice>();
-  // @Output() discard = new EventEmitter<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -70,12 +68,33 @@ export class EditInvoiceFormComponentComponent implements OnInit {
   }
 
   createItemGroup(item: any): FormGroup {
-    return this.fb.group({
+    const group = this.fb.group({
       name: [item.name],
       quantity: [item.quantity],
       price: [item.price],
-      total: [item.total],
+      total: [{ value: item.total, disabled: true }],
     });
+
+    group
+      .get('quantity')
+      ?.valueChanges.subscribe(() => this.updateItemTotal(group));
+    group
+      .get('price')
+      ?.valueChanges.subscribe(() => this.updateItemTotal(group));
+
+    return group;
+  }
+
+  updateItemTotal(group: FormGroup): void {
+    const qty = group.get('quantity')?.value || 0;
+    const price = group.get('price')?.value || 0;
+    const total = qty * price;
+    group.get('total')?.setValue(total, { emitEvent: false });
+
+    const totalSum = this.items.controls.reduce((acc, item) => {
+      return acc + (item.get('total')?.value || 0);
+    }, 0);
+    this.invoiceForm.get('total')?.setValue(totalSum, { emitEvent: false });
   }
 
   get items(): FormArray {
@@ -92,21 +111,9 @@ export class EditInvoiceFormComponentComponent implements OnInit {
     this.items.removeAt(index);
   }
 
-  calculateTotal() {
-    const total = this.items.controls.reduce((acc, item) => {
-      const qty = item.get('quantity')?.value;
-      const price = item.get('price')?.value;
-      const itemTotal = qty * price;
-      item.get('total')?.setValue(itemTotal);
-      return acc + itemTotal;
-    }, 0);
-    this.invoiceForm.get('total')?.setValue(total);
-  }
-
   onSubmit() {
     if (this.invoiceForm.valid) {
-      this.calculateTotal();
-      this.invoiceService.updateInvoice(this.invoiceForm.value);
+      this.invoiceService.updateInvoice(this.invoiceForm.getRawValue());
       this.router.navigate(['/invoices', this.invoiceId]);
     }
   }
@@ -122,9 +129,4 @@ export class EditInvoiceFormComponentComponent implements OnInit {
   closeOnBackdrop(event: MouseEvent) {
     this.router.navigate(['/invoices', this.invoiceId]);
   }
-
-  // onSaveDraftClick() {
-  //   const invoice = this.invoiceForm.value as Invoice;
-  //   this.saveDraft.emit(invoice); // ✅ This must emit Invoice
-  // }
 }
