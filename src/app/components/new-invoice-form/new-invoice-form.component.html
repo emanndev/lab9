@@ -1,0 +1,309 @@
+<!-- <h2>Hello Can you See me</h2>
+
+<div class="new-invoice-overlay">
+  <div class="new-invoice-panel">
+    <h2>New Invoice</h2>
+    <app-edit-invoice-form-component
+      [isNew]="true"
+      (saveDraft)="onSaveDraft($event)"
+      (saveFinal)="onSave($event)"
+      (discard)="onDiscard()"
+    >
+    </app-edit-invoice-form-component>
+  </div>
+</div> -->
+
+<div class="form-container">
+  <div class="form-header">
+    <button class="go-back-btn" (click)="goBack()">
+      <img src="assets/images/icon-arrow-left.svg" alt="back" />
+      <span>Go back</span>
+    </button>
+    <h1>New Invoice</h1>
+  </div>
+
+  <form [formGroup]="invoiceForm" class="invoice-form">
+    <!-- Bill From Section -->
+    <div class="form-section">
+      <h3>Bill From</h3>
+
+      <div class="form-group">
+        <label for="senderStreet">Street Address</label>
+        <input
+          id="senderStreet"
+          formControlName="senderStreet"
+          type="text"
+          [class.error]="isFieldInvalid('senderStreet')"
+        />
+        <span class="error-message" *ngIf="isFieldInvalid('senderStreet')"
+          >can't be empty</span
+        >
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="senderCity">City</label>
+          <input
+            id="senderCity"
+            formControlName="senderCity"
+            type="text"
+            [class.error]="isFieldInvalid('senderCity')"
+          />
+          <span class="error-message" *ngIf="isFieldInvalid('senderCity')"
+            >can't be empty</span
+          >
+        </div>
+        <div class="form-group">
+          <label for="senderPostCode">Post Code</label>
+          <input
+            id="senderPostCode"
+            formControlName="senderPostCode"
+            type="text"
+            [class.error]="isFieldInvalid('senderPostCode')"
+          />
+          <span class="error-message" *ngIf="isFieldInvalid('senderPostCode')"
+            >can't be empty</span
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="senderCountry">Country</label>
+        <input
+          id="senderCountry"
+          formControlName="senderCountry"
+          type="text"
+          [class.error]="isFieldInvalid('senderCountry')"
+        />
+        <span class="error-message" *ngIf="isFieldInvalid('senderCountry')"
+          >can't be empty</span
+        >
+      </div>
+    </div>
+
+    <!-- Bill To Section -->
+    <div class="form-section">
+      <h3>Bill To</h3>
+
+      <div class="form-group">
+        <label for="clientName">Client's Name</label>
+        <input
+          id="clientName"
+          formControlName="clientName"
+          type="text"
+          [class.error]="isFieldInvalid('clientName')"
+        />
+        <span class="error-message" *ngIf="isFieldInvalid('clientName')"
+          >can't be empty</span
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="clientEmail">Client's Email</label>
+        <input
+          id="clientEmail"
+          formControlName="clientEmail"
+          type="email"
+          placeholder="e.g. email@example.com"
+          [class.error]="isFieldInvalid('clientEmail')"
+        />
+        <span class="error-message" *ngIf="isFieldInvalid('clientEmail')">
+          {{ getEmailErrorMessage() }}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="clientStreet">Street Address</label>
+        <input
+          id="clientStreet"
+          formControlName="clientStreet"
+          type="text"
+          [class.error]="isFieldInvalid('clientStreet')"
+        />
+        <span class="error-message" *ngIf="isFieldInvalid('clientStreet')"
+          >can't be empty</span
+        >
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="clientCity">City</label>
+          <input
+            id="clientCity"
+            formControlName="clientCity"
+            type="text"
+            [class.error]="isFieldInvalid('clientCity')"
+          />
+          <span class="error-message" *ngIf="isFieldInvalid('clientCity')"
+            >can't be empty</span
+          >
+        </div>
+        <div class="form-group">
+          <label for="clientPostCode">Post Code</label>
+          <input
+            id="clientPostCode"
+            formControlName="clientPostCode"
+            type="text"
+            [class.error]="isFieldInvalid('clientPostCode')"
+          />
+          <span class="error-message" *ngIf="isFieldInvalid('clientPostCode')"
+            >can't be empty</span
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="clientCountry">Country</label>
+        <input
+          id="clientCountry"
+          formControlName="clientCountry"
+          type="text"
+          [class.error]="isFieldInvalid('clientCountry')"
+        />
+        <span class="error-message" *ngIf="isFieldInvalid('clientCountry')"
+          >can't be empty</span
+        >
+      </div>
+    </div>
+
+    <!-- Invoice Details Section -->
+    <div class="form-section">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="invoiceDate">Invoice Date</label>
+          <input
+            id="invoiceDate"
+            formControlName="invoiceDate"
+            type="date"
+            [class.error]="isFieldInvalid('invoiceDate')"
+          />
+          <span class="error-message" *ngIf="isFieldInvalid('invoiceDate')"
+            >can't be empty</span
+          >
+        </div>
+        <div class="form-group">
+          <label for="paymentTerms">Payment Terms</label>
+          <select
+            id="paymentTerms"
+            formControlName="paymentTerms"
+            [class.error]="isFieldInvalid('paymentTerms')"
+          >
+            <option value="1">Net 1 Day</option>
+            <option value="7">Net 7 Days</option>
+            <option value="14">Net 14 Days</option>
+            <option value="30">Net 30 Days</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="projectDescription">Project Description</label>
+        <input
+          id="projectDescription"
+          formControlName="projectDescription"
+          type="text"
+          placeholder="e.g. Graphic Design Service"
+          [class.error]="isFieldInvalid('projectDescription')"
+        />
+        <span class="error-message" *ngIf="isFieldInvalid('projectDescription')"
+          >can't be empty</span
+        >
+      </div>
+    </div>
+
+    <!-- Item List Section -->
+    <div class="form-section">
+      <h3>Item List</h3>
+
+      <div formArrayName="items">
+        <div
+          *ngFor="let item of itemsFormArray.controls; let i = index"
+          [formGroupName]="i"
+          class="item-row"
+        >
+          <div class="item-header" *ngIf="i === 0">
+            <span>Item Name</span>
+            <span>Qty.</span>
+            <span>Price</span>
+            <span>Total</span>
+            <span></span>
+          </div>
+
+          <div class="item-fields">
+            <div class="form-group item-name">
+              <input
+                formControlName="name"
+                type="text"
+                [class.error]="isItemFieldInvalid(i, 'name')"
+              />
+              <span class="error-message" *ngIf="isItemFieldInvalid(i, 'name')"
+                >can't be empty</span
+              >
+            </div>
+
+            <div class="form-group item-qty">
+              <input
+                formControlName="quantity"
+                type="number"
+                min="1"
+                (input)="updateItemTotal(i)"
+                [class.error]="isItemFieldInvalid(i, 'quantity')"
+              />
+              <span
+                class="error-message"
+                *ngIf="isItemFieldInvalid(i, 'quantity')"
+                >can't be empty</span
+              >
+            </div>
+
+            <div class="form-group item-price">
+              <input
+                formControlName="price"
+                type="number"
+                step="0.01"
+                min="0"
+                (input)="updateItemTotal(i)"
+                [class.error]="isItemFieldInvalid(i, 'price')"
+              />
+              <span class="error-message" *ngIf="isItemFieldInvalid(i, 'price')"
+                >can't be empty</span
+              >
+            </div>
+
+            <div class="item-total">
+              {{ getItemTotal(i) | number : "1.2-2" }}
+            </div>
+
+            <button
+              type="button"
+              class="delete-item-btn"
+              (click)="removeItem(i)"
+              [disabled]="itemsFormArray.length === 1"
+            >
+              <img src="assets/images/icon-delete.svg" alt="delete" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="add-item-btn" (click)="addItem()">
+        + Add New Item
+      </button>
+    </div>
+  </form>
+
+  <!-- Form Actions -->
+  <div class="form-actions">
+    <button type="button" class="btn-discard" (click)="discardForm()">
+      Discard
+    </button>
+    <div class="action-buttons">
+      <button type="button" class="btn-draft" (click)="saveAsDraft()">
+        Save as Draft
+      </button>
+      <button type="button" class="btn-save" (click)="saveAndSend()">
+        Save & Send
+      </button>
+    </div>
+  </div>
+</div>

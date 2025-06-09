@@ -1,20 +1,19 @@
-<main class="app-container">
-  <div class="app-header">
+
+<div class="app-layout">
+  <nav class="navbar">
+    <!-- Logo and Icons -->
     <div class="logo-wrapper">
-<img src="../assets/images/logo.svg" alt="">
+   <div class="logo"></div>
     </div>
-  
-
-    <div class="icons-wrapper">
-     <img class="icon" src="../assets/images/icon-moon.svg" alt="">
-     <hr>
-      <img class="avatar" src="../assets/images/image-avatar.jpg" alt="">
+   
+    <div class="nav-items">
+     <app-theme-toggle/>
+      <hr>
+      <img src="assets/images/image-avatar.jpg" alt="avatar" class="avatar" />
     </div>
-  </div>
- 
-  <section class="invoice-list">
-  <app-invoice-list></app-invoice-list>
-  </section>
+  </nav>
 
-
-</main>
+  <main class="main-content">
+  <router-outlet></router-outlet>
+  </main>
+</div>

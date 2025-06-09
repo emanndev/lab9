@@ -1,0 +1,8 @@
+<button class="theme-toggle" (click)="toggleTheme()">
+  <span *ngIf="themeService.currentTheme === 'light'">
+    <img src="assets/images/icon-moon.svg" alt="theme" class="icon-dark"
+  /></span>
+  <span *ngIf="themeService.currentTheme === 'dark'">
+    <img src="assets/images/icon-sun.svg" alt="theme" class="icon-light"
+  /></span>
+</button>

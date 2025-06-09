@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { InvoiceListComponent } from './components/invoice-list/invoice-list.component';
 
 const routes: Routes = [
@@ -8,6 +9,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [provideRouter(routes)]
 })
 export class AppRoutingModule { }

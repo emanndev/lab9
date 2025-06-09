@@ -1,18 +1,91 @@
+<div class="header-container">
   <div class="list-header">
-  <h1>Invoices</h1>
-    <p>There are 7 total invoices</p>
+    <h1>Invoices</h1>
+    <p>{{ invoiceTotal | textChange }}</p>
   </div>
 
-  <div></div>
-    <button class="new-invoice-button">New Invoice</button>
+  <div class="action-group">
+    <div class="filter-dropdown">
+      <div
+        class="dropdown"
+        (click)="toggleDropdown()"
+        [class.open]="dropdownOpen"
+      >
+        <span class="dropdown-label" id="responsiveText">{{
+          filterTextConfig | textChange
+        }}</span>
+        <img
+          src="assets/images/icon-arrow-down.svg"
+          alt="arrow"
+          class="dropdown-arrow"
+        />
 
-    @for (invoice of invoices; track $index) {
-   <div class="invoice-item">
-      <span class="invoice-id">#{{ invoice.id }}</span>
-      <span class="invoice-due-date">Due {{ invoice.dueDate }}</span>
-      <span class="invoice-client">{{ invoice.client }}</span>
-      <span class="invoice-amount">£{{ invoice.amount }}</span>
-      <span class="invoice-status">{{ invoice.status }}</span>
+        <div class="dropdown-menu" *ngIf="dropdownOpen">
+          <label
+            ><input
+              type="checkbox"
+              (change)="onStatusChange('draft', $event)"
+            />
+            Draft</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              (change)="onStatusChange('pending', $event)"
+            />
+            Pending</label
+          >
+          <label
+            ><input type="checkbox" (change)="onStatusChange('paid', $event)" />
+            Paid</label
+          >
+        </div>
+      </div>
     </div>
-    }
- 
+
+    <button class="new-invoice-button" [routerLink]="['/invoices/new']">
+      <span class="circle">
+        <img src="assets/images/icon-plus.svg" alt="plus icon" />
+      </span>
+      {{ newInvoiceTextConfig | textChange }}
+    </button>
+  </div>
+</div>
+
+@if(invoices.length > 0; ){
+<div
+  class="invoice-card"
+  *ngFor="let invoice of invoices"
+  [routerLink]="['/invoices', invoice.id]"
+>
+  <div class="top">
+    <div class="id"><span class="client-Id">#</span>{{ invoice.id }}</div>
+    <div class="client">{{ invoice.clientName }}</div>
+  </div>
+
+  <div class="middle">
+    <div class="due">Due {{ invoice.paymentDue | date : "dd MMM yyyy" }}</div>
+    <div class="amount">£ {{ invoice.total | number : "1.2-2" }}</div>
+  </div>
+
+  <div class="bottom">
+    <div class="status" [ngClass]="invoice.status">
+      <span class="dot"></span> {{ invoice.status | titlecase }}
+    </div>
+  </div>
+
+  <div class="right-arrow">
+    <img src="assets/images/icon-arrow-right.svg" alt="" />
+  </div>
+</div>
+} @else {
+
+<div class="empty-state">
+  <img src="assets/images/illustration-empty.svg" alt="empty-state-image" />
+  <h2>There is nothing here</h2>
+  <p>
+    Create an invoice by clicking the <br />
+    <span>{{ newInvoiceTextConfig | textChange }}</span> button and get started
+  </p>
+</div>
+}
